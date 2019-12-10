@@ -65,7 +65,7 @@
 
 ?>
 
-<form action="new_rental.html">
+<form action="new_rental.php">
   <button type="submit" class="btn btn-primary"> New Rental </button>
 </form>
 
