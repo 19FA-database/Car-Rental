@@ -17,6 +17,8 @@
     <a href="show_cars.php">Cars</a>
     <a href="search_cars.html">Search Cars</a>
     <a href="new_rental.php">New Rental</a>
+    <a href="new_customer.html">New Customer</a>
+    <a href="show_customer.php">Customers</a>
   </div>
 
     <main role="main" class="container-fluid">

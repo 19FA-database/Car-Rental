@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="styles.css">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-	<title>Delete Rental</title>
+	<title>Delete Customer</title>
 </head>
 <body>
   <div class="topnav">
@@ -21,8 +21,8 @@
 
     <main role="main" class="container-fluid">
       <?php
-        @$rentalId = $_GET["rentalId"];
-        if (!$rentalId) {
+        @$customerId = $_GET["customerId"];
+        if (!$customerId) {
           echo "Error";
           exit;
         }
@@ -32,17 +32,16 @@
           die("Connect Error");
         }
 
-        $query = "DELETE FROM rental WHERE rentalId = ?";
+        $query = "DELETE FROM customer WHERE customerId = ?";
         $stmt = $mysql->prepare($query);
-        $stmt->bind_param("i", $rentalId);
+        $stmt->bind_param("i", $customerId);
         $stmt->execute();
         if ($stmt->affected_rows == 1) {
-          echo "Rental Deleted";
+          echo "Customer Deleted";
         }
 
       ?>
-      <br/
-      ><a href="show_rentals.php">Show Rentals</a>
+      <br/><a href="show_customer.php">Show Customers</a>
     </main>
 </body>
 </html>

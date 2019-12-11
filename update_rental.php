@@ -19,25 +19,22 @@
   </div>
 
     <main role="main" class="container-fluid">
-	<h1> Car Update Results </h1>
+	<h1> Rental Update Results </h1>
 <?php
+    $rentalId = $_POST["rentalId"];
     $carNo = $_POST["carNo"];
-    $modelId = $_POST["modelId"];
-    $mileage = $_POST["mileage"];
-    $price = $_POST["price"];
-    $licensePlate = $_POST["licensePlate"];
+    $customerId = $_POST["customerId"];
+    $start = $_POST["start"];
+    $end = $_POST["end"];
 
-    if (!$carNo || !$modelId || !$mileage || !$price || !$licensePlate) {
+    if (!$carNo || !$customerId || !$start || !$end) {
         echo "You have not entered all required details.  Please go back and try again.";
         exit;
     }
 
     $carNo = intval($carNo);
-    $modelId = intval($modelId);
-    $mileage = intval($mileage);
-    $price = floatval($price);
+    $customerId = intval($customerId);
 
-    //connect to the database
     @$db = new mysqli('localhost', 'carRental', 'test', 'carRental');
 
 
@@ -45,16 +42,16 @@
         die('Connect Error ' . $db->connect_errno . ': ' . $db->connect_error);
     }
 
-    $query = "UPDATE car SET mileage=?, licensePlate=?, price=? WHERE carNo = ?";
+    $query = "UPDATE rental SET dateRented=?, dateReturn=?, carNo=?, customerId=? WHERE rentalId = ?";
     $stmt = $db->prepare($query);
-    $stmt->bind_param("isdi", $mileage, $licensePlate, $price, $carNo);
+    $stmt->bind_param("ssiii", $start, $end, $carNo, $customerId, $rentalId);
     $stmt->execute();
-    echo $stmt->affected_rows." car updated in database";
+    echo $stmt->affected_rows." rental updated in database";
 
     $db->close();
 ?>
     <br/
-    ><a href="show_cars.php">Show Cars</a>
+    ><a href="show_rentals.php">Show Rentals</a>
 </main>
 </body>
 

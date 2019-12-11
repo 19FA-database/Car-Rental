@@ -7,20 +7,20 @@
     <link rel="stylesheet" href="styles.css">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-	<title>Rentals</title>
+	<title>Customers</title>
 </head>
 <body>
   <div class="topnav">
-    <a class="active" href="show_rentals.php">Rentals</a>
+    <a href="show_rentals.php">Rentals</a>
     <a href="show_cars.php">Cars</a>
     <a href="search_cars.html">Search Cars</a>
     <a href="new_rental.php">New Rental</a>
     <a href="new_customer.html">New Customer</a>
-    <a href="show_customer.php">Customers</a>
+    <a class="active" href="show_customer.php">Customers</a>
   </div>
 
     <main role="main" class="container-fluid">
-        <h1>All Rentals</h1>
+        <h1>Customers</h1>
 <?php
     @$db = new mysqli('localhost', 'carRental', 'test', 'carRental');
 
@@ -28,7 +28,7 @@
         die('Connect Error ' . $db->connect_errno . ': ' . $db->connect_error);
     }
 
-    $query="SELECT r.rentalId, n.name, r.dateRented, r.dateReturn, m.make, m.model, c.licensePlate, c.mileage FROM rental r, car c, model m, customer n WHERE r.carNo = c.carNo AND c.modelId = m.modelId AND r.customerId = n.customerId ORDER BY r.rentalId";
+    $query="SELECT * FROM customer";
 
     if ($result = $db->query($query)) {
 
@@ -51,13 +51,11 @@
             echo "<tr>";
             for ($i=0; $i<$num_fields; $i++) {
               if ($i == 0) {
-                $rentalId = $row[$i];
-                echo "<td><a href='show_rental.php?rentalId=$rentalId'>$rentalId</a></td>";
-              } else {
-                echo "<td>".$row[$i]."</td>";
+                $customerId = $row[$i];
               }
+              echo "<td>".$row[$i]."</td>";
             }
-            echo "<td><a href='delete_rental.php?rentalId=$rentalId'>Delete</a></td>";
+            echo "<td><a href='delete_customer.php?customerId=$customerId'>Delete</a></td>";
             echo "</tr>";
         }
 
@@ -69,8 +67,8 @@
 
 ?>
 
-<form action="new_rental.php">
-  <button type="submit" class="btn btn-primary"> New Rental </button>
+<form action="new_customer.html">
+  <button type="submit" class="btn btn-primary"> New Customer </button>
 </form>
 
 </main>

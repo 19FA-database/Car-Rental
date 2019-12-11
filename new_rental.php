@@ -15,10 +15,12 @@
     <a href="show_cars.php">Cars</a>
     <a href="search_cars.html">Search Cars</a>
     <a class="active" href="new_rental.php">New Rental</a>
+    <a href="new_customer.html">New Customer</a>
+    <a href="show_customer.php">Customers</a>
   </div>
 
     <main role="main" class="container-fluid">
-        <h1>  New Rental </h1>
+        <h1> New Rental </h1>
 
         <form action="insert_rental.php" method="post">
             <div class="form-group">
